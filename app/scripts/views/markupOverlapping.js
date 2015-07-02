@@ -18,12 +18,13 @@ Textsel.Views = Textsel.Views || {};
         events: {},
 
         hammerEvents: {
-            'tap .txt-to-select' : 'onTapStartSelecting',
-            'press .list-boxes__item' : 'onPressStartSelecting',
-            'pressup .list-boxes__item': 'onPressStop',
+//            'tap .txt-to-select' : 'onTapStartSelecting',
+//            'press .selectable' : 'onPressStartSelecting',
+  //          'pressup .selectable': 'onPressStop',
         },
 
         initialize: function () {
+            Textsel.Parser.getDeferredGlyphs();
         },
 
         onTapStartSelecting: function(e) {
@@ -56,10 +57,56 @@ Textsel.Views = Textsel.Views || {};
         },
 
         render: function () {
+            var that = this;
             this.undelegateHammerEvents();
             this.$el.html(this.template());
+
+            Textsel.Parser.areGlyphsReady.then(function(data) {
+//                console.log(data);
+                that.drawTextBoxes(data);
+            });
+
+
             this.delegateHammerEvents();
             return this;
+        },
+
+        drawTextBoxes: function(data) {
+            var cont = this.$el.find('.glyphs-container');
+            var centerX = cont.width();
+            var centerY = cont.height();
+
+            for(var i=0, len = data.length; i<len; i++) {
+                this.drawBox(cont, centerX, centerY, data[i]);
+            }
+
+//            console.log(cont);
+        },
+
+        drawBox: function(cont, centX, centY, item) {
+//            console.log(item);
+            var newX = item.x +'px';
+            var newY = (centY - item.y) +'px';
+  
+            var el = $('<span>')
+                        .addClass('glyph selectable')
+                        .css({
+                            width: item.width,
+                            height: item.height,
+                            top: newY,
+                            left: newX,
+                            fontSize: item.height + 'px',
+                            lineHeight: item.height + 'px'
+                        })
+                        .attr('data-width', item.width)
+                        .attr('data-height', item.height)
+                        .attr('data-x', newX)
+                        .attr('data-y', newY)
+                        .text(item.sign);
+
+//            console.log(el);
+            var cont = this.$el.find('.glyphs-container');
+            cont.append(el);
         },
 
         remove: function() {
