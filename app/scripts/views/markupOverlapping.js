@@ -73,11 +73,39 @@ Textsel.Views = Textsel.Views || {};
 
         drawTextBoxes: function(data) {
             var cont = this.$el.find('.glyphs-container');
-            var centerX = cont.width();
-            var centerY = cont.height();
+            var centX = cont.width();
+            var centY = cont.height();
 
+var glyph;
+var word;
+//console.log(data)
             for(var i=0, len = data.length; i<len; i++) {
-                this.drawBox(cont, centerX, centerY, data[i]);
+                var glyphsLen = data[i].glyphs.length;
+
+                word = $('<span>')
+                    .attr('data-text', data[i].phrase)
+                    .addClass('glyphs-box');
+
+
+  console.log(data[i])
+              word.css({
+                    // x,y coordinates
+                    top: data[i].glyphs[0].x + 'px',
+                    left: data[i].glyphs[0].y + 'px',
+                    //width, length
+                    width: data[i].glyphs[0].x + data[i].glyphs[glyphsLen-1].x + data[i].glyphs[glyphsLen-1].width,
+                    height: (centY - (data[i].glyphs[0].y + data[i].glyphs[glyphsLen-1].y + data[i].glyphs[glyphsLen-1].height))
+                })
+
+                for (var k=0; k < glyphsLen; k++ ) {
+                    glyph = this.drawBox(cont, centX, centY, data[i].glyphs[k]);
+
+                    var cont = this.$el.find('.glyphs-container');
+                    word.append(glyph);
+
+                }
+                var cont = this.$el.find('.glyphs-container');
+                cont.append(word);
             }
 
 //            console.log(cont);
@@ -104,9 +132,10 @@ Textsel.Views = Textsel.Views || {};
                         .attr('data-y', newY)
                         .text(item.sign);
 
+            return el;
 //            console.log(el);
-            var cont = this.$el.find('.glyphs-container');
-            cont.append(el);
+//            var cont = this.$el.find('.glyphs-container');
+  //          cont.append(el);
         },
 
         remove: function() {

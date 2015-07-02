@@ -2,15 +2,19 @@
 
 Textsel.Parser = {
 	src: 'xml/3.xml',
-	isFileParsed: $.Deferred(),
-	areGlyphsReady: $.Deferred(),
-	glyphsArr: [],
+	isFileParsed: null,
+	areGlyphsReady: null,
+	wordsArr: [],
 
 	getFile: function() {
+		Textsel.Parser.isFileParsed = $.Deferred();
+		Textsel.Parser.areGlyphsReady = $.Deferred(),
+
 		$.ajax({
 			url: this.src,
 			dataType: 'xml',
 			success: function(data, type, xhr){
+				console.log('file read');
 				var dataJSON = $.xml2json(data);
 				Textsel.Parser.isFileParsed.resolve(dataJSON)
 			}
@@ -29,7 +33,7 @@ Textsel.Parser = {
 				Textsel.Parser.parseParagraph(paragraphs[i]);
 			}
 
-			Textsel.Parser.areGlyphsReady.resolve(Textsel.Parser.glyphsArr);
+			Textsel.Parser.areGlyphsReady.resolve(Textsel.Parser.wordsArr);
 		});
 	},
 	parseParagraph: function(par) {
@@ -45,14 +49,26 @@ Textsel.Parser = {
 		var text = word.Text;
 		var glyphs = word.Box.Glyph;
 
-		for (var i=0, len=glyphs.length; i < len; i++) {
-			Textsel.Parser.parseGlyph(glyphs[i]);
+		// on special markup signs there is no glyp
+		if (glyphs.length) {
+			var wordObj = {
+				phrase: text,
+				glyphs: []
+			}; 
+
+//	console.log(word);		
+			for (var i=0, len=glyphs.length; i < len; i++) {
+				wordObj.glyphs.push(Textsel.Parser.parseGlyph(glyphs[i]));
+			}
+
+			Textsel.Parser.wordsArr.push(wordObj);
+			
 		}
+
 	},
 	parseGlyph: function(glyph) {
 		var box = glyph.$;
 		var sign = glyph._;
-
 		var g = {
 			sign: sign,
 			width: box.width,
@@ -60,8 +76,7 @@ Textsel.Parser = {
 			x: box.x,
 			y: box.y
 		};
-
-		Textsel.Parser.glyphsArr.push(g);
+		return g;
 	},
 	getDeferredGlyphs: function() {
 		Textsel.Parser.init();

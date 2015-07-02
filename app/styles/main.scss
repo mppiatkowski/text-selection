@@ -206,10 +206,16 @@ body {
         background: #ddd;
         display: block;
     
-        .glyph {
-            position: absolute;
-            display: inline-block;
-            background: red;
+        .glyphs-box {
+//            position: absolute;
+  //          display: inline-block;
+    //        background: yellow;
+        
+            .glyph {
+                position: absolute;
+                display: inline-block;
+                background: red;
+            }
         }
     }
 
