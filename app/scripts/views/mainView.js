@@ -22,6 +22,7 @@ Textsel.Views = Textsel.Views || {};
 
         render: function () {
             this.$el.html(this.template());
+            return this;
         },
 
         remove: function() {

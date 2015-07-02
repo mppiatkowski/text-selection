@@ -23,34 +23,50 @@ Textsel.Routers = Textsel.Routers || {};
 			this.on('route:default', function() {
 				console.log('route default');
 
-				this.ViewMain.render();
+				this.resetMainContainer();
 			});
-
+			
 			this.on('route:showRegularMarkup', function() {
 				console.log('route regular');
 
-				this.ViewMain.render();
-    			this.ViewRegular = new Textsel.Views.MarkupRegular();
-    			this.ViewMain.$el.html(this.ViewRegular.render().el);
+				this.resetMainContainer();
+    			
+    			this.ViewPage = new Textsel.Views.MarkupRegular();
+    			this.ViewMain.$el.append(this.ViewPage.render().el);
 
 			});
 
 			this.on('route:showAbsoluteMarkup', function() {
 				console.log('route absolute');
 
-				this.ViewMain.render();
-    			this.ViewAbsolute = new Textsel.Views.MarkupAbsolute();
-    			this.ViewMain.$el.html(this.ViewAbsolute.render().el);
+				this.resetMainContainer();
+    			
+    			this.ViewPage = new Textsel.Views.MarkupAbsolute();
+    			this.ViewMain.$el.append(this.ViewPage.render().el);
 			});
 
 			this.on('route:showOverlappingMarkup', function() {
 				console.log('route overlapping');
 
-				this.ViewMain.render();
-    			this.ViewOverlapping = new Textsel.Views.MarkupOverlapping();
-    			this.ViewMain.$el.html(this.ViewOverlapping.render().el);
+				this.resetMainContainer();
+
+    			this.ViewPage = new Textsel.Views.MarkupOverlapping();
+    			this.ViewMain.$el.append(this.ViewPage.render().el);
 			});
-    	}
+
+    	},
+
+		resetMainContainer: function() {
+			if (this.ViewPage) {
+				this.ViewPage.remove();
+			}
+
+			this.ViewMain.$el.empty();
+			this.ViewMain.render();
+
+			this.ViewMenu = new Textsel.Views.Menu();
+			this.ViewMain.$el.append(this.ViewMenu.render().el);
+		}
     });
 
 })();

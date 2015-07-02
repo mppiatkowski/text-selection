@@ -13,6 +13,9 @@ window.Textsel = {
         Textsel.Router = new Textsel.Routers.MainRouter();
         Textsel.Router.init();
         Textsel.Router.initRoutes();
+
+        //Hammer.defaults.domEvents = true;
+
         Backbone.history.start();
 
 
@@ -24,5 +27,7 @@ window.Textsel = {
 
 $(document).ready(function () {
     'use strict';
+
+
     Textsel.init();
 });
