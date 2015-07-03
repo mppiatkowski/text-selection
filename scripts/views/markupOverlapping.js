@@ -21,9 +21,9 @@ Textsel.Views = Textsel.Views || {};
 
         hammerEvents: {
             'tap .txt-switcher': 'toggleTextSelecting',
-            'tap .glyphs-container' : 'onTapStartSelecting',
-            'press .glyphs-container' : 'onPressStartSelecting',
-            'pressup .glyphs-container': 'onPressStop',
+            'tap .glyphs-container' : 'onTap',
+            'press .glyphs-box' : 'onPressStartSelecting',
+            'pressup .glyphs-box': 'onPressStop',
         },
 
         initialize: function () {
@@ -50,7 +50,7 @@ Textsel.Views = Textsel.Views || {};
             }
         },
 
-        onTapStartSelecting: function(e) {
+        onTap: function(e) {
             e.preventDefault();
             console.log('tapped', e.target);
         },
