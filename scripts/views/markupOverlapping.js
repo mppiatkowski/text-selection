@@ -18,9 +18,9 @@ Textsel.Views = Textsel.Views || {};
         events: {},
 
         hammerEvents: {
-//            'tap .txt-to-select' : 'onTapStartSelecting',
-//            'press .selectable' : 'onPressStartSelecting',
-  //          'pressup .selectable': 'onPressStop',
+            'tap .glyphs-container' : 'onTapStartSelecting',
+            'press .glyphs-container' : 'onPressStartSelecting',
+            'pressup .glyphs-container': 'onPressStop',
         },
 
         initialize: function () {
