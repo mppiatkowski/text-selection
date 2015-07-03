@@ -38,12 +38,15 @@ Textsel.Views = Textsel.Views || {};
                 console.log('text selectable ON');
                 this.$el.find('.txt-switcher').addClass('active');
                 this.$el.find('.glyphs-container').css('userSelect','text');
-                this.$el.find('.glyphs-container').find().css('userSelect','text');
+                this.$el.find('.glyphs-container').find('.glyphs-box').css('userSelect','text');
+                this.$el.find('.glyphs-container').find('.glyph').css('userSelect','text');
             } else {
                 console.log('text selectable OFF');
                 this.$el.find('.txt-switcher').removeClass('active');
                 this.$el.find('.glyphs-container').css('userSelect','none');
                 this.$el.find('.glyphs-container').find().css('userSelect','none');
+                this.$el.find('.glyphs-container').find('.glyphs-box').css('userSelect','none');
+                this.$el.find('.glyphs-container').find('.glyph').css('userSelect','none');
             }
         },
 
