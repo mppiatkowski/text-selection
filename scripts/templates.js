@@ -18,7 +18,7 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container-overlapping">\n    <h2>as XML (from IS)</h2>\n\n    <div class="glyphs-container">\n    </div>\n</div>';
+__p += '<div class="container-overlapping">\n    <h2>as XML (from IS)</h2>\n\n    <button type="button" class="txt-switcher btn">selectable</button>\n\n    <div class="glyphs-container">\n    </div>\n</div>';
 
 }
 return __p

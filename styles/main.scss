@@ -219,6 +219,13 @@ body {
         }
     }
 
+    .txt-switcher {
+        background: grey;
+        &.active {
+            background: green;
+        }
+    }
+
 }
 
 

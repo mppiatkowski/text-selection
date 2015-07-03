@@ -17,7 +17,10 @@ Textsel.Views = Textsel.Views || {};
 
         events: {},
 
+        isTextSelectable: false,
+
         hammerEvents: {
+            'tap .txt-switcher': 'toggleTextSelecting',
             'tap .glyphs-container' : 'onTapStartSelecting',
             'press .glyphs-container' : 'onPressStartSelecting',
             'pressup .glyphs-container': 'onPressStop',
@@ -25,6 +28,23 @@ Textsel.Views = Textsel.Views || {};
 
         initialize: function () {
             Textsel.Parser.getDeferredGlyphs();
+        },
+
+        toggleTextSelecting: function(e) {
+            e.preventDefault();
+
+            this.isTextSelectable = !this.isTextSelectable;
+            if (this.isTextSelectable) {
+                console.log('text selectable ON');
+                this.$el.find('.txt-switcher').addClass('active');
+                this.$el.find('.glyphs-container').css('userSelect','text');
+                this.$el.find('.glyphs-container').children().css('userSelect','text');
+            } else {
+                console.log('text selectable OFF');
+                this.$el.find('.txt-switcher').removeClass('active');
+                this.$el.find('.glyphs-container').css('userSelect','none');
+                this.$el.find('.glyphs-container').children().css('userSelect','none');
+            }
         },
 
         onTapStartSelecting: function(e) {
@@ -38,9 +58,6 @@ Textsel.Views = Textsel.Views || {};
             console.log('pressed', e);
 
             //this.$el.css('userSelect','text');
-            $(e.target).css('userSelect','text');
-            $(e.target).children().css('userSelect','text');
-
 
             $(document).on('selectionchange', function(e){
                 var selObj = document.getSelection();
