@@ -7,7 +7,7 @@ Textsel.Views = Textsel.Views || {};
 
     Textsel.Views.MainView = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/mainView.ejs'],
+        template: JST['scripts/templates/mainView.ejs'],
 
         tagName: 'div',
 

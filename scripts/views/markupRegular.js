@@ -7,7 +7,7 @@ Textsel.Views = Textsel.Views || {};
 
     Textsel.Views.MarkupRegular = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/markupRegular.ejs'],
+        template: JST['scripts/templates/markupRegular.ejs'],
 
         tagName: 'div',
 

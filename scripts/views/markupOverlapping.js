@@ -7,7 +7,7 @@ Textsel.Views = Textsel.Views || {};
 
     Textsel.Views.MarkupOverlapping = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/markupOverlapping.ejs'],
+        template: JST['scripts/templates/markupOverlapping.ejs'],
 
         tagName: 'div',
 

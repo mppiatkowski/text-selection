@@ -34,7 +34,7 @@ module.exports = function (grunt) {
 			},
 			sass: {
 				files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-				tasks: ['sass:server']
+				tasks: ['sass:server', 'sass:compile']
 			},
 			livereload: {
 				options: {
@@ -155,6 +155,13 @@ module.exports = function (grunt) {
 			  dest: '.tmp/styles',
 			  ext: '.css'
 			}]
+		  },
+		  compile: {
+			  expand: true,
+			  cwd: 'styles',
+			  src: ['*.{scss,sass}'],
+			  dest: 'styles',
+			  ext: '.css'		  	
 		  }
 		},
 		// not enabled since usemin task does concat and uglify
@@ -239,9 +246,13 @@ module.exports = function (grunt) {
 		jst: {
 			compile: {
 				files: {
-					'.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.ejs']
+					'.tmp/scripts/templates.js': ['scripts/templates/*.ejs'],
+					'scripts/templates.js': ['scripts/templates/*.ejs']
+				},
+				options: {
+					separator: ";"
 				}
-			}
+			},
 		},
 		rev: {
 			dist: {
@@ -260,6 +271,7 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('createDefaultTemplate', function () {
 		grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
+		grunt.file.write('scripts/templates.js', 'this.JST = this.JST || {};');
 	});
 
 	grunt.registerTask('server', function (target) {
@@ -320,6 +332,7 @@ module.exports = function (grunt) {
 		'createDefaultTemplate',
 		'jst',
 		'sass:dist',
+		'sass:compile',
 		'useminPrepare',
 		'imagemin',
 		'htmlmin',
@@ -329,6 +342,12 @@ module.exports = function (grunt) {
 		'copy',
 		'rev',
 		'usemin'
+	]);
+
+	grunt.registerTask('x', [
+		'clean:dist',
+		'createDefaultTemplate',
+		'jst',
 	]);
 
 	grunt.registerTask('default', [

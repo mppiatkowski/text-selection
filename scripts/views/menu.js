@@ -7,7 +7,7 @@ Textsel.Views = Textsel.Views || {};
 
     Textsel.Views.Menu = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/menu.ejs'],
+        template: JST['scripts/templates/menu.ejs'],
 
         tagName: 'div',
 

@@ -7,7 +7,7 @@ Textsel.Views = Textsel.Views || {};
 
     Textsel.Views.MarkupAbsolute = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/markupAbsolute.ejs'],
+        template: JST['scripts/templates/markupAbsolute.ejs'],
 
         tagName: 'div',
 
