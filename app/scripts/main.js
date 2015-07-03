@@ -15,6 +15,7 @@ window.Textsel = {
         Textsel.Router.initRoutes();
 
         //Hammer.defaults.domEvents = true;
+        delete Hammer.defaults.cssProps.userSelect;
 
         Backbone.history.start();
 

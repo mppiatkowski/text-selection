@@ -198,6 +198,27 @@ body {
 .container-overlapping {
     .list-boxes__item {
     }
+
+    .glyphs-container {
+        position: relative;
+        width: 700px;
+        height: 550px;
+        background: #ddd;
+        display: block;
+    
+        .glyphs-box {
+//            position: absolute;
+  //          display: inline-block;
+    //        background: yellow;
+        
+            .glyph {
+                position: absolute;
+                display: inline-block;
+                background: red;
+            }
+        }
+    }
+
 }
 
 
