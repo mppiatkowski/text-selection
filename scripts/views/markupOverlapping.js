@@ -44,8 +44,12 @@ Textsel.Views = Textsel.Views || {};
                 $(document).on('selectionchange', function(e){
                     var selObj = document.getSelection();
                     // obj, html clone, txt
+this.$el.find('.taken').css('background','none');
                     console.log('sel chng', selObj, selObj.getRangeAt(0).cloneContents(), selObj.toString());
+                    var elements = selObj.getRangeAt(0).cloneContents()
 
+
+$(elements).addClass('taken').css('background', 'green');
                 })
 
             } else {
