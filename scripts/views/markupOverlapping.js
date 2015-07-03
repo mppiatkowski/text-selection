@@ -40,6 +40,14 @@ Textsel.Views = Textsel.Views || {};
                 this.$el.find('.glyphs-container').css('userSelect','text');
                 this.$el.find('.glyphs-container').find('.glyphs-box').css('userSelect','text');
                 this.$el.find('.glyphs-container').find('.glyph').css('userSelect','text');
+
+                $(document).on('selectionchange', function(e){
+                    var selObj = document.getSelection();
+                    // obj, html clone, txt
+                    console.log('sel chng', selObj, selObj.getRangeAt(0).cloneContents(), selObj.toString());
+
+                })
+
             } else {
                 console.log('text selectable OFF');
                 this.$el.find('.txt-switcher').removeClass('active');
@@ -47,6 +55,8 @@ Textsel.Views = Textsel.Views || {};
                 this.$el.find('.glyphs-container').find().css('userSelect','none');
                 this.$el.find('.glyphs-container').find('.glyphs-box').css('userSelect','none');
                 this.$el.find('.glyphs-container').find('.glyph').css('userSelect','none');
+
+                $(document).off('selectionchange');
             }
         },
 
