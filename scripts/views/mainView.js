@@ -9,14 +9,6 @@ Textsel.Views = Textsel.Views || {};
 
         template: JST['scripts/templates/mainView.ejs'],
 
-        tagName: 'div',
-
-        id: '',
-
-        className: '',
-
-        events: {},
-
         initialize: function () {
         },
 

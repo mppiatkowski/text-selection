@@ -9,37 +9,34 @@ Textsel.Views = Textsel.Views || {};
 
         template: JST['scripts/templates/menu.ejs'],
 
-        tagName: 'div',
-
-        id: '',
-
-        className: '',
-
-        events: {},
-
         hammerEvents: {
             'tap .btnRegular' : 'onTapBtnRegular',
             'tap .btnAbsolute' : 'onTapBtnAbsolute',
-            'tap .btnOverlap' : 'onTapBtnOverlap',
+            'tap .btnIS' : 'onTapBtnIS',
+        },
+
+        activateRightBtn: function(className) {
+            this.$el.find('li').removeClass('active');
+            this.$el.find(className).closest('li').addClass('active');
         },
 
         onTapBtnRegular: function() {
-            console.log('tapped 1');
+            this.activateRightBtn('.btnRegular');
             Textsel.Router.navigate('regularMarkup', {
                 trigger: true
             });
         },
 
         onTapBtnAbsolute: function() {
-            console.log('tapped 2');
+            this.activateRightBtn('.btnAbsolute');
             Textsel.Router.navigate('absoluteMarkup', {
                 trigger: true
             });
         },
 
-        onTapBtnOverlap: function() {
-            console.log('tapped 3');
-            Textsel.Router.navigate('overlappingMarkup', {
+        onTapBtnIS: function() {
+            this.activateRightBtn('.btnIS');
+            Textsel.Router.navigate('ISMarkup', {
                 trigger: true
             });
         },

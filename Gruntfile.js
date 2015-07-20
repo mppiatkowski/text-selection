@@ -33,7 +33,7 @@ module.exports = function (grunt) {
 				livereload: LIVERELOAD_PORT
 			},
 			sass: {
-				files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+				files: ['styles/{,*/}*.{scss,sass}'],
 				tasks: ['sass:server', 'sass:compile']
 			},
 			livereload: {
@@ -41,23 +41,19 @@ module.exports = function (grunt) {
 					livereload: grunt.option('livereloadport') || LIVERELOAD_PORT
 				},
 				files: [
-					'<%= yeoman.app %>/*.html',
-					'{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
-					'{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
-					'<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-					'<%= yeoman.app %>/scripts/templates/*.{ejs,mustache,hbs}',
+					'<%= yeoman.app %>*.html',
+					'{.tmp,<%= yeoman.app %>}styles/{,*/}*.css',
+					'{.tmp,<%= yeoman.app %>}scripts/{,*/}*.js',
+					'<%= yeoman.app %>images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+					'<%= yeoman.app %>scripts/templates/*.{ejs,mustache,hbs}',
 					'test/spec/**/*.js'
 				]
 			},
 			jst: {
 				files: [
-					'<%= yeoman.app %>/scripts/templates/*.ejs'
+					'<%= yeoman.app %>scripts/templates/*.ejs'
 				],
 				tasks: ['jst']
-			},
-			test: {
-				files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/spec/**/*.js'],
-				tasks: ['test:true']
 			}
 		},
 		connect: {
@@ -120,8 +116,8 @@ module.exports = function (grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%= yeoman.app %>/scripts/{,*/}*.js',
-				'!<%= yeoman.app %>/scripts/vendor/*',
+				'<%= yeoman.app %>scripts/{,*/}*.js',
+				'!<%= yeoman.app %>scripts/vendor/*',
 				'test/spec/{,*/}*.js'
 			]
 		},
@@ -141,7 +137,7 @@ module.exports = function (grunt) {
 		  dist: {
 			files: [{
 			  expand: true,
-			  cwd: '<%= yeoman.app %>/styles',
+			  cwd: '<%= yeoman.app %>styles',
 			  src: ['*.{scss,sass}'],
 			  dest: '.tmp/styles',
 			  ext: '.css'
@@ -150,7 +146,7 @@ module.exports = function (grunt) {
 		  server: {
 			files: [{
 			  expand: true,
-			  cwd: '<%= yeoman.app %>/styles',
+			  cwd: '<%= yeoman.app %>styles',
 			  src: ['*.{scss,sass}'],
 			  dest: '.tmp/styles',
 			  ext: '.css'
@@ -171,7 +167,7 @@ module.exports = function (grunt) {
 			dist: {}
 		},*/
 		useminPrepare: {
-			html: '<%= yeoman.app %>/index.html',
+			html: '<%= yeoman.app %>index.html',
 			options: {
 				dest: '<%= yeoman.dist %>'
 			}
@@ -187,7 +183,7 @@ module.exports = function (grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: '<%= yeoman.app %>/images',
+					cwd: '<%= yeoman.app %>images',
 					src: '{,*/}*.{png,jpg,jpeg}',
 					dest: '<%= yeoman.dist %>/images'
 				}]
@@ -198,7 +194,7 @@ module.exports = function (grunt) {
 				files: {
 					'<%= yeoman.dist %>/styles/main.css': [
 						'.tmp/styles/{,*/}*.css',
-						'<%= yeoman.app %>/styles/{,*/}*.css'
+						'<%= yeoman.app %>styles/{,*/}*.css'
 					]
 				}
 			}

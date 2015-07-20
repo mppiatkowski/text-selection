@@ -5,56 +5,13 @@ Textsel.Views = Textsel.Views || {};
 (function () {
     'use strict';
 
-    Textsel.Views.MarkupAbsolute = Backbone.View.extend({
+    Textsel.Views.MarkupAbsolute = Textsel.Views.MarkupCommon.extend({
 
         template: JST['scripts/templates/markupAbsolute.ejs'],
 
-        tagName: 'div',
-
-        id: '',
-
-        className: '',
-
-        events: {},
-
         hammerEvents: {
-            'tap .txt-to-select' : 'onTapStartSelecting',
-            'press .list-boxes__item' : 'onPressStartSelecting',
-            'pressup .list-boxes__item': 'onPressStop',
+            'tap .txt-switcher': 'toggleTextSelecting',
         },
-
-        initialize: function () {
-        },
-
-        onTapStartSelecting: function(e) {
-            e.preventDefault();
-            console.log('tapped', e.target);
-        },
-
-        onPressStartSelecting: function(e) {
-            e.preventDefault();
-
-            console.log('pressed', e);
-
-            //this.$el.css('userSelect','text');
-            $(e.target).css('userSelect','text');
-            $(e.target).children().css('userSelect','text');
-
-
-            $(document).on('selectionchange', function(e){
-                var selObj = document.getSelection();
-                // obj, html clone, txt
-                console.log('sel chng', selObj, selObj.getRangeAt(0).cloneContents(), selObj.toString());
-
-            })
-
-        },
-
-        onPressStop: function(e) {
-            console.log('pressUp');
-            console.log('sel text', window.getSelection());
-        },
-
 
         render: function () {
             this.undelegateHammerEvents();
@@ -67,7 +24,6 @@ Textsel.Views = Textsel.Views || {};
             this.undelegateHammerEvents();
             this._super();
         },
-
     });
 
 })();

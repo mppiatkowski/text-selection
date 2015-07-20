@@ -9,8 +9,8 @@ Textsel.Routers = Textsel.Routers || {};
     	routes: {
 			'regularMarkup': 'showRegularMarkup',
 			'absoluteMarkup': 'showAbsoluteMarkup',
-			'overlappingMarkup': 'showOverlappingMarkup',
-			'.*': 'default'
+			'ISMarkup': 'showISMarkup',
+			'.*': 'showDefault'
     	},
     	init: function() {
 
@@ -18,13 +18,14 @@ Textsel.Routers = Textsel.Routers || {};
 				el: '#appWrapper'
 			});
 			this.ViewMain.render();
+
+			this.ViewMenu = new Textsel.Views.Menu();
+			this.ViewMain.$el.append(this.ViewMenu.render().el);
     	},
     	initRoutes: function() {
-			this.on('route:default', function() {
-				console.log('route default');
-
-				this.resetMainContainer();
-			});
+    		this.on('route:showDefault', function() {
+				this.ViewMenu.onTapBtnRegular();
+    		});
 			
 			this.on('route:showRegularMarkup', function() {
 				console.log('route regular');
@@ -45,12 +46,12 @@ Textsel.Routers = Textsel.Routers || {};
     			this.ViewMain.$el.append(this.ViewPage.render().el);
 			});
 
-			this.on('route:showOverlappingMarkup', function() {
-				console.log('route overlapping');
+			this.on('route:showISMarkup', function() {
+				console.log('route IS');
 
 				this.resetMainContainer();
 
-    			this.ViewPage = new Textsel.Views.MarkupOverlapping();
+    			this.ViewPage = new Textsel.Views.MarkupIS();
     			this.ViewMain.$el.append(this.ViewPage.render().el);
 			});
 
@@ -60,12 +61,6 @@ Textsel.Routers = Textsel.Routers || {};
 			if (this.ViewPage) {
 				this.ViewPage.remove();
 			}
-
-			this.ViewMain.$el.empty();
-			this.ViewMain.render();
-
-			this.ViewMenu = new Textsel.Views.Menu();
-			this.ViewMain.$el.append(this.ViewMenu.render().el);
 		}
     });
 

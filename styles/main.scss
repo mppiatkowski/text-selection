@@ -70,7 +70,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
-        max-width: 730px;
+        max-width: 768px;
     }
 
     /* Remove the padding we set earlier */
@@ -141,6 +141,10 @@ body {
 
 /* relative */
 
+.glyphs-container {
+    -webkit-user-select: none;
+    user-select: none;
+}
 
 .container-regular {
     .list-boxes__item {
@@ -195,13 +199,14 @@ body {
     }
 }
 
-.container-overlapping {
+.container-IS {
     .list-boxes__item {
     }
 
     .glyphs-container {
+
         position: relative;
-        width: 700px;
+        width: 720px;
         height: 550px;
         background: #ddd;
         display: block;
