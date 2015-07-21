@@ -6068,7 +6068,8 @@ button.close {
 /* Space out content a bit */
 body {
   padding-top: 20px;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  box-sizing: border-box; }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -6166,10 +6167,22 @@ body {
 .list-boxes__item:nth-child(2n+1) {
   clear: left; }
 
-/* relative */
+.container .glyphs-container {
+  position: relative;
+  width: 720px;
+  height: 550px;
+  background: #ddd;
+  display: block; }
+
+.container .txt-switcher {
+  background: grey; }
+  .container .txt-switcher.active {
+    background: green; }
+
 .glyphs-container {
   -webkit-user-select: none;
-  user-select: none; }
+  user-select: none;
+  margin-top: 10px; }
 
 .container-regular .list-boxes__item {
   width: 45%;
@@ -6209,22 +6222,20 @@ body {
     top: 800px;
     left: 0; }
 
-.container-IS .glyphs-container {
+.container-IS .glyphs-box .glyph {
+  position: absolute;
+  display: inline-block;
+  background: red; }
+
+.container-IS2 .glyphs-box {
+  position: absolute;
+  outline: 1px solid red;
+  white-space: nowrap; }
+
+.container-IS2 .glyph {
   position: relative;
-  width: 720px;
-  height: 550px;
-  background: #ddd;
-  display: block; }
-  .container-IS .glyphs-container .glyphs-box .glyph {
-    position: absolute;
-    display: inline-block;
-    background: red; }
-
-.container-IS .txt-switcher {
-  background: grey; }
-  .container-IS .txt-switcher.active {
-    background: green; }
-
-/* absolute */
+  display: inline-block;
+  outline: 1px dashed yellow;
+  overflow: hidden; }
 
 /*# sourceMappingURL=main.css.map */

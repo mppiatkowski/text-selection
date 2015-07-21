@@ -1,10 +1,11 @@
 
 
 Textsel.Parser = {
-	src: 'xml/3.xml',
+	src: undefined,
 	isFileParsed: null,
 	areGlyphsReady: null,
 	wordsArr: [],
+	paragraphsArray: [],
 
 	getFile: function() {
 		Textsel.Parser.isFileParsed = $.Deferred();
@@ -21,7 +22,7 @@ Textsel.Parser = {
 		});
 	},
 	init: function() {
-		console.log('initializing xml parser');
+		//console.log('initializing xml parser');
 		Textsel.Parser.getFile();
 	},
 	getPageContent: function(data) {
@@ -29,42 +30,54 @@ Textsel.Parser = {
 			var page = data['#document']['TET']['Document']['Pages']['Page'];
 			var paragraphs = page['Content']['Para'];
 
-			for (var i=0, len=paragraphs.length; i < len; i++) {
-				Textsel.Parser.parseParagraph(paragraphs[i]);
-			}
+			var parsedPage = Array.prototype.map.call(paragraphs, Textsel.Parser.parseParagraph);
 
-			Textsel.Parser.areGlyphsReady.resolve(Textsel.Parser.wordsArr);
+			//console.log(parsedPage);
+			Textsel.Parser.areGlyphsReady.resolve(parsedPage);
 		});
 	},
 	parseParagraph: function(par) {
 		var words = par.Word;
+		var parsedPar;
 		//console.log(par);
 
-		for (var i=0, len=words.length; i < len; i++) {
-			Textsel.Parser.parseWord(words[i]);
+		if (Object.prototype.toString.call(words) === '[object Array]') {
+			parsedPar = Array.prototype.map.call(words, Textsel.Parser.parseWord);
+		} else {
+			parsedPar = [].concat(Textsel.Parser.parseWord(words));
 		}
+		//console.log(parsedPar);
+		return parsedPar;
 	},
-	parseWord: function(word) {
-		//console.log(word);
+	parseWord: function(word, index, wordsArr) {
 		var text = word.Text;
 		var glyphs = word.Box.Glyph;
+		var wordsArr = [];
 
-		// on special markup signs there is no glyp
-		if (glyphs.length) {
+		//console.log(word);
+
+		// on special markup signs there is no glyph
+		if (Object.prototype.toString.call(glyphs) === '[object Array]' && glyphs.length) {
 			var wordObj = {
 				phrase: text,
-				glyphs: []
+				glyphs: [],
+				space: word.Box.$
 			}; 
 
-//	console.log(word);		
+			//	console.log(word);
 			for (var i=0, len=glyphs.length; i < len; i++) {
 				wordObj.glyphs.push(Textsel.Parser.parseGlyph(glyphs[i]));
-			}
+			}				
 
-			Textsel.Parser.wordsArr.push(wordObj);
-			
+		} else {
+			var wordObj = {
+				type: 'sign',
+				phrase: text,
+				glyphs: [word.Box.Glyph.$],
+				space: word.Box.$
+			}; 			
 		}
-
+		return wordObj;
 	},
 	parseGlyph: function(glyph) {
 		var box = glyph.$;
@@ -78,8 +91,13 @@ Textsel.Parser = {
 		};
 		return g;
 	},
-	getDeferredGlyphs: function() {
-		Textsel.Parser.init();
-		Textsel.Parser.getPageContent();
+	getDeferredGlyphs: function(xmlFile) {
+		this.src = xmlFile;
+		if (this.src) {
+			Textsel.Parser.init();
+			Textsel.Parser.getPageContent();			
+		} else {
+			throw new Error ("no src file passed");
+		}
 	}
 }

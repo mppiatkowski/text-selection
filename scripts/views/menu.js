@@ -13,6 +13,8 @@ Textsel.Views = Textsel.Views || {};
             'tap .btnRegular' : 'onTapBtnRegular',
             'tap .btnAbsolute' : 'onTapBtnAbsolute',
             'tap .btnIS' : 'onTapBtnIS',
+            'tap .btnIS2' : 'onTapBtnIS2',
+            'tap .btnPdf2Html' : 'onTapBtnPdf2Html',
         },
 
         activateRightBtn: function(className) {
@@ -37,6 +39,20 @@ Textsel.Views = Textsel.Views || {};
         onTapBtnIS: function() {
             this.activateRightBtn('.btnIS');
             Textsel.Router.navigate('ISMarkup', {
+                trigger: true
+            });
+        },
+
+        onTapBtnIS2: function() {
+            this.activateRightBtn('.btnIS2');
+            Textsel.Router.navigate('ISMarkup2', {
+                trigger: true
+            });
+        },
+
+        onTapBtnPdf2Html: function() {
+            this.activateRightBtn('.btnPdf2Html');
+            Textsel.Router.navigate('pdf2html', {
                 trigger: true
             });
         },

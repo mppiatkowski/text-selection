@@ -13,6 +13,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/bootstr
 body {
     padding-top: 20px;
     padding-bottom: 20px;
+    box-sizing: border-box;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -139,11 +140,31 @@ body {
 }
 
 
-/* relative */
+.container{
+
+    .glyphs-container {
+
+        position: relative;
+        width: 720px;
+        height: 550px;
+        background: #ddd;
+        display: block;
+    
+    }
+
+    .txt-switcher {
+        background: grey;
+        &.active {
+            background: green;
+        }
+    }
+
+}
 
 .glyphs-container {
     -webkit-user-select: none;
     user-select: none;
+    margin-top: 10px;
 }
 
 .container-regular {
@@ -200,38 +221,33 @@ body {
 }
 
 .container-IS {
-    .list-boxes__item {
-    }
 
-    .glyphs-container {
-
-        position: relative;
-        width: 720px;
-        height: 550px;
-        background: #ddd;
-        display: block;
-    
-        .glyphs-box {
-//            position: absolute;
-  //          display: inline-block;
-    //        background: yellow;
-        
-            .glyph {
-                position: absolute;
-                display: inline-block;
-                background: red;
-            }
+    .glyphs-box {        
+        .glyph {
+            position: absolute;
+            display: inline-block;
+            background: red;
         }
     }
-
-    .txt-switcher {
-        background: grey;
-        &.active {
-            background: green;
-        }
-    }
-
 }
 
+.container-IS2 {
 
-/* absolute */
+    .aragraphized-box {
+
+    }
+
+    .glyphs-box {        
+        position: absolute;
+        outline: 1px solid red;
+        white-space: nowrap;
+
+    }
+
+    .glyph {
+        position: relative;
+        display: inline-block;
+        outline: 1px dashed yellow;
+        overflow: hidden;
+    }
+}

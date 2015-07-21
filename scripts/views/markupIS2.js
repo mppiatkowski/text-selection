@@ -5,9 +5,9 @@ Textsel.Views = Textsel.Views || {};
 (function () {
     'use strict';
 
-    Textsel.Views.MarkupIS = Textsel.Views.MarkupCommon.extend({
+    Textsel.Views.MarkupIS2 = Textsel.Views.MarkupCommon.extend({
 
-        template: JST['scripts/templates/markupIS.ejs'],
+        template: JST['scripts/templates/markupIS2.ejs'],
 
         hammerEvents: {
             'tap .txt-switcher': 'toggleTextSelecting',
@@ -57,7 +57,7 @@ Textsel.Views = Textsel.Views || {};
             return this;
         },
 
-        // boxes are not positioned, only each individual glyph
+        // boxes are positioned and each glyph has calculated dimensions and fits inside
         drawTextBoxes: function(data) {
             var cont = this.$el.find('.glyphs-container');
             var centX = cont.width();
@@ -78,16 +78,22 @@ Textsel.Views = Textsel.Views || {};
                 for(var i=0, len = data[p].length; i<len; i++) {
                     var glyphsLen = data[p][i].glyphs.length;
 
-                    var wordWidth = parseFloat(data[p][i].glyphs[0].x) + parseFloat(data[p][i].glyphs[glyphsLen-1].x) + parseFloat(data[p][i].glyphs[glyphsLen-1].width);
-                    var wordHeight = (centY - (parseFloat(data[p][i].glyphs[0].y) + parseFloat(data[p][i].glyphs[glyphsLen-1].y) + parseFloat(data[p][i].glyphs[glyphsLen-1].height)) );
+
+                    var xLeft = parseFloat(data[p][i].space.llx);
+                    var xRight = parseFloat(data[p][i].space.urx);
+                    var yTop = centY - parseFloat(data[p][i].space.ury);
+                    var yBottom = centY - parseFloat(data[p][i].space.lly);
+
+                    var wordWidth = xRight- xLeft;
+                    var wordHeight = yBottom - yTop;
 
                     word = $('<span>')
                         .attr('data-text', data[p][i].phrase)
                         .addClass('glyphs-box')
                         .css({
                             // x,y coordinates
-                            top: data[p][i].glyphs[0].x + 'px',
-                            left: data[p][i].glyphs[0].y + 'px',
+                            top: yTop + 'px',
+                            left: xLeft + 'px',
                             //width, length
                             width: wordWidth + 'px',
                             height: wordHeight + 'px'
@@ -95,9 +101,14 @@ Textsel.Views = Textsel.Views || {};
 
                     // glyphs
                     for (var k=0; k < glyphsLen; k++ ) {
-                        glyph = this.drawBox(cont, centX, centY, data[p][i].glyphs[k]);
+                        glyph = this.drawBox(cont, data[p][i].glyphs[k]);
                         word.append(glyph);
 
+                        // split words with space if last glyph
+                        if (k === glyphsLen -1) {
+                            glyph = this.drawBox(cont, {width: 1, height: wordHeight, sign: '###---###'});
+                            word.append(glyph);
+                        }
                     }
                     paragraphized.append(word);
                 }
@@ -109,25 +120,19 @@ Textsel.Views = Textsel.Views || {};
             // console.log(cont);
         },
 
-        drawBox: function(cont, centX, centY, item) {
+        drawBox: function(cont, item) {
             // console.log(item);
-            var newX = item.x +'px';
-            var newY = (centY - item.y) +'px';
   
             var el = $('<span>')
                         .addClass('glyph selectable')
                         .css({
                             width: item.width,
                             height: item.height,
-                            top: newY,
-                            left: newX,
                             fontSize: item.height + 'px',
                             lineHeight: item.height + 'px'
                         })
                         .attr('data-width', item.width)
                         .attr('data-height', item.height)
-                        .attr('data-x', newX)
-                        .attr('data-y', newY)
                         .text(item.sign);
 
             return el;

@@ -8,8 +8,10 @@ Textsel.Routers = Textsel.Routers || {};
     Textsel.Routers.MainRouter = Backbone.Router.extend({
     	routes: {
 			'regularMarkup': 'showRegularMarkup',
-			'absoluteMarkup': 'showAbsoluteMarkup',
 			'ISMarkup': 'showISMarkup',
+			'ISMarkup2': 'showISMarkup2',
+			'pdf2html': 'showPdf2Html',
+			'absoluteMarkup': 'showAbsoluteMarkup',
 			'.*': 'showDefault'
     	},
     	init: function() {
@@ -53,6 +55,24 @@ Textsel.Routers = Textsel.Routers || {};
 
     			this.ViewPage = new Textsel.Views.MarkupIS();
     			this.ViewMain.$el.append(this.ViewPage.render().el);
+			});
+
+			this.on('route:showISMarkup2', function() {
+				console.log('route IS 2');
+
+				this.resetMainContainer();
+
+    			this.ViewPage = new Textsel.Views.MarkupIS2();
+    			this.ViewMain.$el.append(this.ViewPage.render().el);
+			});
+
+			this.on('route:showPdf2Html', function() {
+				console.log('route pdf2html');
+				this.resetMainContainer();
+
+    			this.ViewPage = new Textsel.Views.MarkupPdf2Html();
+    			this.ViewMain.$el.append(this.ViewPage.render().el);
+
 			});
 
     	},
