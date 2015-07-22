@@ -18,7 +18,7 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container-IS">\n    <p>as XML (from IS) - each glyph has position absolute in static word (glyps positioned to container)</p>\n\n    <button type="button" class="txt-switcher btn">selectable</button>\n\n    <div class="glyphs-container">\n    </div>\n</div>';
+__p += '<div class="container-IS">\n    <p>as XML (from IS) - each glyph as boxed span has position absolute in static word (glyps positioned to container)</p>\n\n    <button type="button" class="txt-switcher btn">selectable</button>\n\n    <div class="glyphs-container">\n    </div>\n</div>';
 
 }
 return __p
@@ -26,7 +26,15 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container-IS2">\n    <p>as XML (from IS) - each glyph has position in absolut positioned word (words positioned in container, glyphs overflowed)</p>\n\n    <button type="button" class="txt-switcher btn">selectable</button>\n\n    <div class="glyphs-container">\n    </div>\n</div>';
+__p += '<div class="container-IS2">\n    <p>as XML (from IS) - each glyph as boxed span in absolut positioned word (words positioned in container, glyphs overflowed)</p>\n\n    <button type="button" class="txt-switcher btn">selectable</button>\n\n    <div class="glyphs-container">\n    </div>\n</div>';
+
+}
+return __p
+};;this["JST"]["scripts/templates/markupIS3.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="container-IS3">\n    <p>as XML (from IS) - each glyph as text has position in absolut positioned word</p>\n\n    <button type="button" class="txt-switcher btn">selectable</button>\n\n    <div class="glyphs-container">\n    </div>\n</div>';
 
 }
 return __p
@@ -50,7 +58,7 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '    <div>\n        <ul class="nav nav-pills">\n            <li><a href="javascript:void(0);" class="btn btnRegular">Regular</a></li>\n            <li><a href="javascript:void(0);" class="btn btnIS">XML1</a></li>\n            <li><a href="javascript:void(0);" class="btn btnIS2">XML2</a></li>\n            <li><a href="javascript:void(0);" class="btn btnPdf2Html">pdf2html</a></li>\n        </ul>\n    </div>\n';
+__p += '    <div>\n        <ul class="nav nav-pills">\n            <li><a href="javascript:void(0);" class="btn btnRegular">Regular</a></li>\n            <li><a href="javascript:void(0);" class="btn btnIS">XML1</a></li>\n            <li><a href="javascript:void(0);" class="btn btnIS2">XML2</a></li>\n            <li><a href="javascript:void(0);" class="btn btnIS3">XML3</a></li>\n            <li><a href="javascript:void(0);" class="btn btnPdf2Html">pdf2html</a></li>\n        </ul>\n    </div>\n';
 
 }
 return __p

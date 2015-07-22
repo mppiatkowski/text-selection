@@ -10,6 +10,7 @@ Textsel.Routers = Textsel.Routers || {};
 			'regularMarkup': 'showRegularMarkup',
 			'ISMarkup': 'showISMarkup',
 			'ISMarkup2': 'showISMarkup2',
+			'ISMarkup3': 'showISMarkup3',
 			'pdf2html': 'showPdf2Html',
 			'absoluteMarkup': 'showAbsoluteMarkup',
 			'.*': 'showDefault'
@@ -63,6 +64,15 @@ Textsel.Routers = Textsel.Routers || {};
 				this.resetMainContainer();
 
     			this.ViewPage = new Textsel.Views.MarkupIS2();
+    			this.ViewMain.$el.append(this.ViewPage.render().el);
+			});
+
+			this.on('route:showISMarkup3', function() {
+				console.log('route IS 3');
+
+				this.resetMainContainer();
+
+    			this.ViewPage = new Textsel.Views.MarkupIS3();
     			this.ViewMain.$el.append(this.ViewPage.render().el);
 			});
 

@@ -227,13 +227,15 @@ body {
             position: absolute;
             display: inline-block;
             background: red;
+            opacity: .3;
         }
     }
 }
 
-.container-IS2 {
+.container-IS2,
+.container-IS3 {
 
-    .aragraphized-box {
+    .paragraphized-box {
 
     }
 
@@ -241,7 +243,7 @@ body {
         position: absolute;
         outline: 1px solid red;
         white-space: nowrap;
-
+        opacity: .3;
     }
 
     .glyph {

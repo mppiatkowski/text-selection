@@ -6225,14 +6225,18 @@ body {
 .container-IS .glyphs-box .glyph {
   position: absolute;
   display: inline-block;
-  background: red; }
+  background: red;
+  opacity: .3; }
 
-.container-IS2 .glyphs-box {
+.container-IS2 .glyphs-box,
+.container-IS3 .glyphs-box {
   position: absolute;
   outline: 1px solid red;
-  white-space: nowrap; }
+  white-space: nowrap;
+  opacity: .3; }
 
-.container-IS2 .glyph {
+.container-IS2 .glyph,
+.container-IS3 .glyph {
   position: relative;
   display: inline-block;
   outline: 1px dashed yellow;

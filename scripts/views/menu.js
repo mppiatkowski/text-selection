@@ -14,6 +14,7 @@ Textsel.Views = Textsel.Views || {};
             'tap .btnAbsolute' : 'onTapBtnAbsolute',
             'tap .btnIS' : 'onTapBtnIS',
             'tap .btnIS2' : 'onTapBtnIS2',
+            'tap .btnIS3' : 'onTapBtnIS3',
             'tap .btnPdf2Html' : 'onTapBtnPdf2Html',
         },
 
@@ -46,6 +47,13 @@ Textsel.Views = Textsel.Views || {};
         onTapBtnIS2: function() {
             this.activateRightBtn('.btnIS2');
             Textsel.Router.navigate('ISMarkup2', {
+                trigger: true
+            });
+        },
+
+        onTapBtnIS3: function() {
+            this.activateRightBtn('.btnIS3');
+            Textsel.Router.navigate('ISMarkup3', {
                 trigger: true
             });
         },
