@@ -16,6 +16,7 @@ Textsel.Views = Textsel.Views || {};
             'tap .btnIS2' : 'onTapBtnIS2',
             'tap .btnIS3' : 'onTapBtnIS3',
             'tap .btnPdf2Html' : 'onTapBtnPdf2Html',
+            'tap .btnPdf2Html2' : 'onTapBtnPdf2Html2',
         },
 
         activateRightBtn: function(className) {
@@ -61,6 +62,13 @@ Textsel.Views = Textsel.Views || {};
         onTapBtnPdf2Html: function() {
             this.activateRightBtn('.btnPdf2Html');
             Textsel.Router.navigate('pdf2html', {
+                trigger: true
+            });
+        },
+
+        onTapBtnPdf2Html2: function() {
+            this.activateRightBtn('.btnPdf2Html2');
+            Textsel.Router.navigate('pdf2html2', {
                 trigger: true
             });
         },

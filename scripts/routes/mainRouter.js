@@ -12,6 +12,7 @@ Textsel.Routers = Textsel.Routers || {};
 			'ISMarkup2': 'showISMarkup2',
 			'ISMarkup3': 'showISMarkup3',
 			'pdf2html': 'showPdf2Html',
+			'pdf2html2': 'showPdf2Html2',
 			'absoluteMarkup': 'showAbsoluteMarkup',
 			'.*': 'showDefault'
     	},
@@ -81,6 +82,15 @@ Textsel.Routers = Textsel.Routers || {};
 				this.resetMainContainer();
 
     			this.ViewPage = new Textsel.Views.MarkupPdf2Html();
+    			this.ViewMain.$el.append(this.ViewPage.render().el);
+
+			});
+
+			this.on('route:showPdf2Html2', function() {
+				console.log('route pdf2html 2');
+				this.resetMainContainer();
+
+    			this.ViewPage = new Textsel.Views.MarkupPdf2Html2();
     			this.ViewMain.$el.append(this.ViewPage.render().el);
 
 			});
