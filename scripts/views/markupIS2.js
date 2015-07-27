@@ -96,7 +96,8 @@ Textsel.Views = Textsel.Views || {};
                             left: xLeft + 'px',
                             //width, length
                             width: wordWidth + 'px',
-                            height: wordHeight + 'px'
+                            height: wordHeight + 'px',
+                            lineHeight: wordHeight + 'px'
                         });
 
                     // glyphs
@@ -128,8 +129,7 @@ Textsel.Views = Textsel.Views || {};
                         .css({
                             width: item.width,
                             height: item.height,
-                            fontSize: item.height + 'px',
-                            lineHeight: item.height + 'px'
+                            fontSize: item.height + 'px'
                         })
                         .attr('data-width', item.width)
                         .attr('data-height', item.height)
