@@ -96,7 +96,8 @@ Textsel.Views = Textsel.Views || {};
                             left: xLeft + 'px',
                             //width, length
                             width: wordWidth + 'px',
-                            height: wordHeight + 'px'
+                            height: wordHeight + 'px',
+                            lineHeight: wordHeight + 'px'
                         });
 
                     // glyphs
