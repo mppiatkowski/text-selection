@@ -6257,4 +6257,8 @@ body {
   display: inline-block;
   overflow: hidden; }
 
+.container-absolute .markups-overlay {
+  background: red;
+  display: none; }
+
 /*# sourceMappingURL=main.css.map */

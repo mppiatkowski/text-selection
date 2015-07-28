@@ -10,7 +10,7 @@ return __p
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container-absolute">\n    <p>XML (from IS) is not selectable, over it we have canvas that intercept touches and draw boxes</p>\n\n    <button type="button" class="txt-switcher btn">selectable</button>\n\n    <div class="glyphs-container">\n    </div>\n</div>';
+__p += '<div class="container-absolute">\n    <p>XML (from IS) is not selectable, over it we have canvas that intercept touches and draw boxes</p>\n\n    <button type="button" class="txt-switcher btn">selectable</button>\n\n    <div class="glyphs-container">\n    \t<canvas class="markups-overlay"></canvas>\n    </div>\n</div>';
 
 }
 return __p

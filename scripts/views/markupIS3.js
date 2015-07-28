@@ -17,19 +17,6 @@ Textsel.Views = Textsel.Views || {};
             Textsel.Parser.getDeferredGlyphs('xml/3.xml');
         },
 
-        onTap: function(e) {
-            e.preventDefault();
-            console.log('tapped', e.target);
-        },
-
-        onPressStartSelecting: function(e) {
-            e.preventDefault();
-        },
-
-        onPressStop: function(e) {
-            console.log('pressUp');
-        },
-
         render: function () {
             var that = this;
             this.undelegateHammerEvents();

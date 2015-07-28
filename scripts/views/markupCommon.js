@@ -40,7 +40,7 @@ Textsel.Views = Textsel.Views || {};
         },
 
         injectSelectedText: function(text) {
-            Textsel.Bus.trigger('text:changed', text);
+            Textsel.Bus.trigger('text:changed', {text: text});
         },
 
         toggleTextSelecting: function(e) {
@@ -73,7 +73,6 @@ Textsel.Views = Textsel.Views || {};
 
                 // obj, html clone, txt
                 console.log('sel chng', selObj, selObj.getRangeAt(0).cloneContents(), selObj.toString());
-
 
                 that.injectSelectedText(selObj.toString());
                 /*

@@ -17,32 +17,6 @@ Textsel.Views = Textsel.Views || {};
             Textsel.Parser.getDeferredGlyphs('xml/3.xml');
         },
 
-        onTap: function(e) {
-            e.preventDefault();
-            console.log('tapped', e.target);
-        },
-
-        onPressStartSelecting: function(e) {
-            e.preventDefault();
-
-            console.log('pressed', e);
-
-            //this.$el.css('userSelect','text');
-            /*
-            $(document).on('selectionchange', function(e){
-                var selObj = document.getSelection();
-                // obj, html clone, txt
-                console.log('sel chng', selObj, selObj.getRangeAt(0).cloneContents(), selObj.toString());
-
-            })
-            */
-
-        },
-
-        onPressStop: function(e) {
-            console.log('pressUp');
-        },
-
         render: function () {
             var that = this;
             this.undelegateHammerEvents();

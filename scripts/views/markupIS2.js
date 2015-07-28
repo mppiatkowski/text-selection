@@ -17,32 +17,6 @@ Textsel.Views = Textsel.Views || {};
             Textsel.Parser.getDeferredGlyphs('xml/3.xml');
         },
 
-        onTap: function(e) {
-            e.preventDefault();
-            console.log('tapped', e.target);
-        },
-
-        onPressStartSelecting: function(e) {
-            e.preventDefault();
-
-            console.log('pressed', e);
-
-            //this.$el.css('userSelect','text');
-            /*
-            $(document).on('selectionchange', function(e){
-                var selObj = document.getSelection();
-                // obj, html clone, txt
-                console.log('sel chng', selObj, selObj.getRangeAt(0).cloneContents(), selObj.toString());
-
-            })
-            */
-
-        },
-
-        onPressStop: function(e) {
-            console.log('pressUp');
-        },
-
         render: function () {
             var that = this;
             this.undelegateHammerEvents();
@@ -107,12 +81,19 @@ Textsel.Views = Textsel.Views || {};
 
                         // split words with space if last glyph
                         if (k === glyphsLen -1) {
-                            glyph = this.drawBox(cont, {width: 1, height: wordHeight, sign: '###---###'});
+                            glyph = this.drawBox(cont, {width: 1, height: wordHeight, sign: " "});
                             word.append(glyph);
                         }
                     }
                     paragraphized.append(word);
                 }
+
+                // add paragraph splitter
+                if (p !== len) {
+                    glyph = this.drawBox(cont, {width: 1, height: wordHeight, sign: "<br />"});
+                    paragraphized.append(glyph);
+                }
+
                 var cont = this.$el.find('.glyphs-container');
                 cont.append(paragraphized);
             }

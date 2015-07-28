@@ -9,6 +9,7 @@ Textsel.Views = Textsel.Views || {};
 
         template: JST['scripts/templates/textPreviewer.ejs'],
         className: "previewer-box",
+        //tagName: "textarea",
 
         render: function () {
             this.$el.html(this.template());
@@ -22,9 +23,12 @@ Textsel.Views = Textsel.Views || {};
             this._super();
         },
 
-        redrawText: function(text) {
-            console.log('text redraw', arguments);
-            this.$el.html(text);
+        redrawText: function(options) {
+            if (options) {
+                this.$el.html(options.text);
+            } else {
+                this.$el.html('');
+            }
         }
 
     });
