@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget
+	xmlns="http://www.w3.org/ns/widgets"
+	xmlns:gap="http://phonegap.com/ns/1.0"
+	xmlns:android = "http://schemas.android.com/apk/res/android"
+	id="com.test.textselection" version="1.0.1">
+
+	<name>Text selection</name>
+	<description>Text selection tests</description>
+
+	<author href="https://build.phonegap.com" email="marcin.piatkowski@proofhq.com">
+		MPP
+	</author>
+
+	<preference name="DisallowOverscroll" value="true" />
+	<preference name="ShowSplashScreenSpinner" value="false" />
+			 
+	<preference name="phonegap-version" value="cli-5.1.1" />
+	<gap:plugin name="org.crosswalk.engine" version="1.3.0" source="pgb" />
+
+	<gap:platform name="ios">
+	</gap:platform>
+
+	<gap:platform name="android" >
+	</gap:platform>
+
+
+	<gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.1.0" gap:platform="android"  />
+	<access origin="*" />
+	<access origin="*" launch-external="yes" />
+	<allow-intent href="*"/>
+	<allow-navigation href="*"/>
+	
+</widget>
