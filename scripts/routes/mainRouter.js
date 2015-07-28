@@ -36,6 +36,9 @@ Textsel.Routers = Textsel.Routers || {};
 
 				this.resetMainContainer();
     			
+				this.ViewTextPreviewer = new Textsel.Views.TextPreviewer();
+				this.ViewMain.$el.append(this.ViewTextPreviewer.render().el);
+
     			this.ViewPage = new Textsel.Views.MarkupRegular();
     			this.ViewMain.$el.append(this.ViewPage.render().el);
 
@@ -45,6 +48,9 @@ Textsel.Routers = Textsel.Routers || {};
 				console.log('route absolute');
 
 				this.resetMainContainer();
+
+				this.ViewTextPreviewer = new Textsel.Views.TextPreviewer();
+				this.ViewMain.$el.append(this.ViewTextPreviewer.render().el);
     			
     			this.ViewPage = new Textsel.Views.MarkupAbsolute();
     			this.ViewMain.$el.append(this.ViewPage.render().el);
@@ -55,6 +61,9 @@ Textsel.Routers = Textsel.Routers || {};
 
 				this.resetMainContainer();
 
+				this.ViewTextPreviewer = new Textsel.Views.TextPreviewer();
+				this.ViewMain.$el.append(this.ViewTextPreviewer.render().el);
+
     			this.ViewPage = new Textsel.Views.MarkupIS();
     			this.ViewMain.$el.append(this.ViewPage.render().el);
 			});
@@ -63,6 +72,9 @@ Textsel.Routers = Textsel.Routers || {};
 				console.log('route IS 2');
 
 				this.resetMainContainer();
+
+				this.ViewTextPreviewer = new Textsel.Views.TextPreviewer();
+				this.ViewMain.$el.append(this.ViewTextPreviewer.render().el);
 
     			this.ViewPage = new Textsel.Views.MarkupIS2();
     			this.ViewMain.$el.append(this.ViewPage.render().el);
@@ -73,6 +85,9 @@ Textsel.Routers = Textsel.Routers || {};
 
 				this.resetMainContainer();
 
+				this.ViewTextPreviewer = new Textsel.Views.TextPreviewer();
+				this.ViewMain.$el.append(this.ViewTextPreviewer.render().el);
+
     			this.ViewPage = new Textsel.Views.MarkupIS3();
     			this.ViewMain.$el.append(this.ViewPage.render().el);
 			});
@@ -80,6 +95,9 @@ Textsel.Routers = Textsel.Routers || {};
 			this.on('route:showPdf2Html', function() {
 				console.log('route pdf2html');
 				this.resetMainContainer();
+
+				this.ViewTextPreviewer = new Textsel.Views.TextPreviewer();
+				this.ViewMain.$el.append(this.ViewTextPreviewer.render().el);
 
     			this.ViewPage = new Textsel.Views.MarkupPdf2Html();
     			this.ViewMain.$el.append(this.ViewPage.render().el);
@@ -89,6 +107,9 @@ Textsel.Routers = Textsel.Routers || {};
 			this.on('route:showPdf2Html2', function() {
 				console.log('route pdf2html 2');
 				this.resetMainContainer();
+
+				this.ViewTextPreviewer = new Textsel.Views.TextPreviewer();
+				this.ViewMain.$el.append(this.ViewTextPreviewer.render().el);
 
     			this.ViewPage = new Textsel.Views.MarkupPdf2Html2();
     			this.ViewMain.$el.append(this.ViewPage.render().el);
@@ -100,6 +121,7 @@ Textsel.Routers = Textsel.Routers || {};
 		resetMainContainer: function() {
 			if (this.ViewPage) {
 				this.ViewPage.remove();
+				this.ViewTextPreviewer.remove();
 			}
 		}
     });

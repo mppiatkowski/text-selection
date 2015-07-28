@@ -14,6 +14,10 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
     box-sizing: border-box;
+
+    user-select: none;
+    -webkit-user-select: none;
+
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -71,7 +75,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
-        max-width: 768px;
+        width: 1024px;
     }
 
     /* Remove the padding we set earlier */
@@ -139,13 +143,21 @@ body {
     clear: left;
 }
 
+.previewer-box {
+
+    height: 200px;
+    overflow: scroll;
+    border: 1px dashed #999;
+    padding: 5px;
+    word-wrap: break-word; 
+}
+
 
 .container{
 
     .glyphs-container {
 
         position: relative;
-        width: 720px;
         height: 550px;
         background: #ddd;
         display: block;
@@ -248,6 +260,24 @@ body {
         position: relative;
         display: inline-block;
         outline: 1px dashed yellow;
+        overflow: hidden;
+    }
+}
+
+.container-absolute {
+
+    .paragraphized-box {
+
+    }
+
+    .glyphs-box {        
+        position: absolute;
+        white-space: nowrap;
+    }
+
+    .glyph {
+        position: relative;
+        display: inline-block;
         overflow: hidden;
     }
 }

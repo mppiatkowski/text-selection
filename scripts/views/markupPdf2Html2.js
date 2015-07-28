@@ -39,6 +39,7 @@ adjustWordSpacing: function(widths) {
     var isDone = [];
     var currentSpacing = [];
     var elements = [];
+    var isIE = false;
     
     // Initialise arrays
     for (i = 0; i < widths.length; i++) {

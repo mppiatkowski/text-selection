@@ -11,6 +11,14 @@ Textsel.Views = Textsel.Views || {};
 
         isTextSelectable: false,
 
+        hammerOptions: {
+            tap: {
+                threshold: 200,
+                interval: 500,
+                posThreshold: 40
+            }
+        },
+
         hammerEvents: {
             'tap .txt-switcher': 'toggleTextSelecting',
         },
@@ -29,6 +37,10 @@ Textsel.Views = Textsel.Views || {};
             this.undelegateHammerEvents();
             this.turnOffSelectionChange();
             this._super();
+        },
+
+        injectSelectedText: function(text) {
+            Textsel.Bus.trigger('text:changed', text);
         },
 
         toggleTextSelecting: function(e) {
@@ -59,10 +71,11 @@ Textsel.Views = Textsel.Views || {};
             $(document).on('selectionchange', function(e){
                 var selObj = document.getSelection();
 
-//                that.$el.find('.taken').css('background','none');
-
                 // obj, html clone, txt
                 console.log('sel chng', selObj, selObj.getRangeAt(0).cloneContents(), selObj.toString());
+
+
+                that.injectSelectedText(selObj.toString());
                 /*
                 var elements = selObj.getRangeAt(0).cloneContents()
                 var range = window.getSelection().getRangeAt(0);
