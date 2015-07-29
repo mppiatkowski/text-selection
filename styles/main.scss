@@ -273,16 +273,20 @@ body {
     .glyphs-box {        
         position: absolute;
         white-space: nowrap;
+        outline: 1px solid red;
     }
 
     .glyph {
         position: relative;
         display: inline-block;
         overflow: hidden;
+        outline: 1px dashed yellow;
     }
 
     .markups-overlay {
-        background: red;
+        background: rgba(230,0,0,.3);
         display: none;
+        position: relative;
+        z-index: 10000;
     }
 }

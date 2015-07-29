@@ -55,8 +55,11 @@ Textsel.Views = Textsel.Views || {};
 
                     var xLeft = parseFloat(data[p][i].space.llx);
                     var xRight = parseFloat(data[p][i].space.urx);
-                    var yTop = centY - parseFloat(data[p][i].space.ury);
-                    var yBottom = centY - parseFloat(data[p][i].space.lly);
+                    //var yTop = centY - parseFloat(data[p][i].space.ury);
+                    //var yBottom = centY - parseFloat(data[p][i].space.lly);
+                    
+                    var yTop = data.pageParams.height - parseFloat(data[p][i].space.ury);
+                    var yBottom = data.pageParams.height - parseFloat(data[p][i].space.lly);
 
                     var wordWidth = xRight- xLeft;
                     var wordHeight = yBottom - yTop;

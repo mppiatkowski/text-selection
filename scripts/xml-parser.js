@@ -29,24 +29,58 @@ Textsel.Parser = {
 		Textsel.Parser.isFileParsed.then(function(data) {
 			var page = data['#document']['TET']['Document']['Pages']['Page'];
 			var paragraphs = page['Content']['Para'];
+			var pageParams = {width: parseFloat(page.$.width), height: parseFloat(page.$.height)};
 
-			var parsedPage = Array.prototype.map.call(paragraphs, Textsel.Parser.parseParagraph);
+			var parsedPage = Array.prototype.map.call(paragraphs, function(item){
+				return Textsel.Parser.parseParagraph(item, pageParams);
+			});
 
+			parsedPage.pageParams = pageParams;
 			//console.log(parsedPage);
 			Textsel.Parser.areGlyphsReady.resolve(parsedPage);
 		});
 	},
-	parseParagraph: function(par) {
+	parseParagraph: function(par, pageParams) {
 		var words = par.Word;
 		var parsedPar;
-		//console.log(par);
+		var i, len;
 
 		if (Object.prototype.toString.call(words) === '[object Array]') {
 			parsedPar = Array.prototype.map.call(words, Textsel.Parser.parseWord);
 		} else {
 			parsedPar = [].concat(Textsel.Parser.parseWord(words));
 		}
-		//console.log(parsedPar);
+
+		// calculate paragraph box
+		parsedPar.space = {
+			llx: parseFloat(parsedPar[0].space.llx),
+			lly: pageParams.height - parseFloat(parsedPar[0].space.lly),
+			urx: parseFloat(parsedPar[parsedPar.length-1].space.urx),
+			ury: pageParams.height - parseFloat(parsedPar[parsedPar.length-1].space.ury)	
+		}
+
+		for (i=0, len=parsedPar.length; i<len; i++) {
+
+			var a;
+			if (parsedPar[i].space.llx) {
+				a = Math.min(parsedPar.space.llx, parseFloat(parsedPar[i].space.llx));
+				parsedPar.space.llx = a;
+			}
+			if (parsedPar[i].space.urx) {
+				a = Math.max(parsedPar.space.urx, parseFloat(parsedPar[i].space.urx));
+				parsedPar.space.urx = a;
+			}
+			if (parsedPar[i].space.ury) {
+				a = Math.min(parsedPar.space.ury, pageParams.height - parseFloat(parsedPar[i].space.ury));
+				parsedPar.space.ury = a; 
+			}
+			if (parsedPar[i].space.lly) {
+				a = Math.max(parsedPar.space.lly, pageParams.height - parseFloat(parsedPar[i].space.lly));
+				parsedPar.space.lly = a;
+			}
+		}
+
+		console.log('by parser - par space: ',parsedPar.space);
 		return parsedPar;
 	},
 	parseWord: function(word, index, wordsArr) {
