@@ -46,17 +46,19 @@ Textsel.Parser = {
 		var i, len;
 
 		if (Object.prototype.toString.call(words) === '[object Array]') {
-			parsedPar = Array.prototype.map.call(words, Textsel.Parser.parseWord);
+			parsedPar = Array.prototype.map.call(words, function(item, index, arr) {
+				return Textsel.Parser.parseWord(item, index, arr, pageParams);
+			});
 		} else {
-			parsedPar = [].concat(Textsel.Parser.parseWord(words));
+			parsedPar = [].concat(Textsel.Parser.parseWord(words, 0, [words], pageParams));
 		}
 
 		// calculate paragraph box
 		parsedPar.space = {
 			llx: parseFloat(parsedPar[0].space.llx),
-			lly: pageParams.height - parseFloat(parsedPar[0].space.lly),
+			lly: parseFloat(parsedPar[0].space.lly),
 			urx: parseFloat(parsedPar[parsedPar.length-1].space.urx),
-			ury: pageParams.height - parseFloat(parsedPar[parsedPar.length-1].space.ury)	
+			ury: parseFloat(parsedPar[parsedPar.length-1].space.ury)	
 		}
 
 		for (i=0, len=parsedPar.length; i<len; i++) {
@@ -71,11 +73,11 @@ Textsel.Parser = {
 				parsedPar.space.urx = a;
 			}
 			if (parsedPar[i].space.ury) {
-				a = Math.min(parsedPar.space.ury, pageParams.height - parseFloat(parsedPar[i].space.ury));
+				a = Math.min(parsedPar.space.ury, parseFloat(parsedPar[i].space.ury));
 				parsedPar.space.ury = a; 
 			}
 			if (parsedPar[i].space.lly) {
-				a = Math.max(parsedPar.space.lly, pageParams.height - parseFloat(parsedPar[i].space.lly));
+				a = Math.max(parsedPar.space.lly, parseFloat(parsedPar[i].space.lly));
 				parsedPar.space.lly = a;
 			}
 		}
@@ -83,19 +85,24 @@ Textsel.Parser = {
 		console.log('by parser - par space: ',parsedPar.space);
 		return parsedPar;
 	},
-	parseWord: function(word, index, wordsArr) {
+	parseWord: function(word, index, wordsArr, pageParams) {
 		var text = word.Text;
 		var glyphs = word.Box.Glyph;
 		var wordsArr = [];
 
-		//console.log(word);
+		console.log(word,pageParams);
 
 		// on special markup signs there is no glyph
 		if (Object.prototype.toString.call(glyphs) === '[object Array]' && glyphs.length) {
 			var wordObj = {
 				phrase: text,
 				glyphs: [],
-				space: word.Box.$
+				space: {
+					llx: word.Box.$.llx,
+					lly: pageParams.height - parseFloat(word.Box.$.lly),
+					urx: word.Box.$.urx,
+					ury: pageParams.height - parseFloat(word.Box.$.ury)
+				}
 			}; 
 
 			//	console.log(word);
@@ -108,8 +115,13 @@ Textsel.Parser = {
 				type: 'sign',
 				phrase: text,
 				glyphs: [word.Box.Glyph.$],
-				space: word.Box.$
-			}; 			
+				space: {
+					llx: word.Box.$.llx,
+					lly: pageParams.height - parseFloat(word.Box.$.lly),
+					urx: word.Box.$.urx,
+					ury: pageParams.height - parseFloat(word.Box.$.ury)
+				}
+			}
 		}
 		return wordObj;
 	},

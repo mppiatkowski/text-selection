@@ -104,7 +104,7 @@ Textsel.Views = Textsel.Views || {};
                 var xLeft = parseFloat(line.space.llx);
                 var xRight = parseFloat(line.space.urx);
 
-                //console.log(i, tapPos.y + ' > ' + yTop + ' && '+tapPos.y+' < '+yBottom,  dataArr[i]);
+                console.log(i, tapPos.y + ' > ' + yTop + ' && '+tapPos.y+' < '+yBottom,  dataArr[i]);
 
                 if ((tapPos.y > yTop && tapPos.y < yBottom) 
                         && (tapPos.x > xLeft && tapPos.x < xRight)) {
