@@ -145,7 +145,7 @@ body {
 
 .previewer-box {
 
-    height: 200px;
+    height: 100px;
     overflow: scroll;
     border: 1px dashed #999;
     padding: 5px;
@@ -188,48 +188,6 @@ body {
 
 .container-absolute {
     height: 1200px;
-    .list-boxes__item {
-        position: absolute;
-        height: 180px;
-        background: #ccc;
-    }
-
-    .list-boxes__item:nth-child(1) {
-        top: 400px;
-        left: 0;
-    }
-    .list-boxes__item:nth-child(2) {
-        top: 600px;
-        left: 50%;        
-    }
-    .list-boxes__item:nth-child(3) {
-        top: 200px;
-        left: 0;
-    }
-    .list-boxes__item:nth-child(4) {
-        top: 200px;
-        left: 50%;
-    }
-    .list-boxes__item:nth-child(5) {
-        top: 600px;
-        left: 0;
-    }
-    .list-boxes__item:nth-child(6) {
-        top: 1000px;
-        left: 30%;
-    }
-    .list-boxes__item:nth-child(7) {
-        top: 400px;
-        left: 50%;
-    }
-    .list-boxes__item:nth-child(8) {
-        top: 800px;
-        left: 50%;
-    }
-    .list-boxes__item:nth-child(9) {
-        top: 800px;
-        left: 0;
-    }
 }
 
 .container-IS {
@@ -259,7 +217,7 @@ body {
     .glyph {
         position: relative;
         display: inline-block;
-        outline: 1px dashed yellow;
+        outline: 1px solid yellow;
         overflow: hidden;
     }
 }
