@@ -6251,7 +6251,8 @@ body {
 .container-absolute .glyphs-box {
   position: absolute;
   white-space: nowrap;
-  outline: 1px solid red; }
+  outline: 1px solid red;
+  overflow: hidden; }
 
 .container-absolute .glyph {
   position: relative;
@@ -6260,7 +6261,7 @@ body {
   outline: 1px dashed yellow; }
 
 .container-absolute .markups-overlay {
-  background: rgba(230, 0, 0, 0.3);
+  background: rgba(230, 0, 0, 0.1);
   display: none;
   position: relative;
   z-index: 10000; }

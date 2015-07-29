@@ -26,6 +26,10 @@ Textsel.Views = Textsel.Views || {};
                 glyph: undefined
             }
         },
+        styles: {
+            selectedItemBg: "rgba(255,30,30,.4)",
+            selectionHandles: "green"
+        },
 
         hammerEvents: {
             'tap .txt-switcher': 'toggleTextSelecting',
@@ -201,7 +205,7 @@ Textsel.Views = Textsel.Views || {};
         drawSelectedItem: function(word){
             console.log(word);
 
-            this.ctx.fillStyle = "#553328";
+            this.ctx.fillStyle = this.styles.selectedItemBg;
             this.ctx.fillRect(word.space.llx, word.space.ury, word.space.urx - word.space.llx, word.space.lly - word.space.ury);
 
         },
@@ -210,7 +214,7 @@ Textsel.Views = Textsel.Views || {};
             var xs = this.dataToDisplay[selStart.paragraph].space.llx;
             var ys = this.dataToDisplay[selStart.paragraph].space.ury;
 
-            this.ctx.fillStyle = "#00A308";
+            this.ctx.fillStyle = this.styles.selectionHandles;
             this.ctx.beginPath();
             this.ctx.arc(xs, ys, 5, 0, 2*Math.PI);
             this.ctx.closePath();
@@ -219,7 +223,7 @@ Textsel.Views = Textsel.Views || {};
             var xe = this.dataToDisplay[selEnd.paragraph].space.urx;
             var ye = this.dataToDisplay[selEnd.paragraph].space.lly;
 
-            this.ctx.fillStyle = "#00A308";
+            this.ctx.fillStyle = this.styles.selectionHandles;
             this.ctx.beginPath();
             this.ctx.arc(xe, ye, 5, 0, 2*Math.PI);
             this.ctx.closePath();

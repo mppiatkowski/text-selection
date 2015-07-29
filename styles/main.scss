@@ -274,6 +274,7 @@ body {
         position: absolute;
         white-space: nowrap;
         outline: 1px solid red;
+        overflow: hidden;
     }
 
     .glyph {
@@ -284,7 +285,7 @@ body {
     }
 
     .markups-overlay {
-        background: rgba(230,0,0,.3);
+        background: rgba(230,0,0,.1);
         display: none;
         position: relative;
         z-index: 10000;
