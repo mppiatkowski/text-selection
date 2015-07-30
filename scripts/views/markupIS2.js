@@ -91,10 +91,12 @@ Textsel.Views = Textsel.Views || {};
                 }
 
                 // add paragraph splitter
+                /*
                 if (p !== len) {
                     glyph = this.drawBox(cont, {width: 1, height: wordHeight, sign: "<br />"});
                     paragraphized.append(glyph);
                 }
+                */
 
                 var cont = this.$el.find('.glyphs-container');
                 cont.append(paragraphized);
