@@ -13,9 +13,12 @@ Textsel.Views = Textsel.Views || {};
 
         hammerOptions: {
             tap: {
-                threshold: 200,
+                threshold: 20,
                 interval: 500,
                 posThreshold: 40
+            },
+            press: {
+                threshold: 20
             }
         },
 
